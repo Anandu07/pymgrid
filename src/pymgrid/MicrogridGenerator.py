@@ -265,20 +265,34 @@ class MicrogridGenerator:
         if scenario == 1: # PGE A-6 TOU 2020 summer
 
             for i in range(8760):
-                if (i% 24 >= 12 and i%24 <18):
-                    price_import.append(0.59)
+
+                if (i% 24 >= 11 and i%24 <15):
+                    temp_price = round(np.random.uniform(0.25,0.32),2)
+                    price_import.append(temp_price)
+                    price_export.append(temp_price-0.04)
+                elif (i% 24 >= 15 and i%24 <19):
+                    temp_price = round(np.random.uniform(0.48,0.63),2)
+                    price_import.append(temp_price)
+                    price_export.append(temp_price-0.04)
                 elif (i% 24 < 8 or i%24 >=21):
-                    price_import.append(0.22)
+                    temp_price = round(np.random.uniform(0.16,0.23),2)
+                    price_import.append(temp_price)
+                    price_export.append(temp_price-0.04)
                 else:
                     price_import.append(0.29)
+                    price_export.append(0.25)
 
 
         if scenario == 2: # France Commercial TOU Marseille plage 5
             for i in range(8760):
                 if (i% 24 >= 0 and i%24 <5) or (i%24>=14 and i%24<17):
-                    price_import.append(0.08)
+                    temp_price = round(np.random.uniform(0.07,0.13),2)
+                    price_import.append(temp_price)
+                    price_export.append(temp_price-0.04)
                 else:
-                    price_import.append(0.11)
+                    temp_price = round(np.random.uniform(0.08,0.16),2)
+                    price_import.append(temp_price)
+                    price_export.append(temp_price-0.04)
 
         # if scenario == 3: Belgium
 
